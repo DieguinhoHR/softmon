@@ -1,17 +1,23 @@
-import React from 'react';
-import { ApolloProvider } from 'react-apollo'
+import React from 'react'
 
+import { ApolloProvider } from 'react-apollo'
 import apolloClient from './services/apollo'
 
-//import * as compose from 'lodash.flowright'
-import TodoList from './pages/TodoList'
+import { Main } from './styles'
+
+import Routes from './routes';
 
 function App() {
   return (    
     <ApolloProvider client={apolloClient}>
-      <main>
-        <TodoList />
-      </main>
+      <Main>
+        <div className='container'>
+          <div className="card">
+            <h5 className="card-header">Pokémons</h5>
+            <Routes />
+          </div>
+        </div>
+      </Main>
     </ApolloProvider>
   );
 }
