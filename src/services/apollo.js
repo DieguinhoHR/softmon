@@ -3,7 +3,7 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const httpLink = new HttpLink({
-    uri: 'https://graphql-pokemon.now.sh/'
+    uri: process.env.REACT_APP_API_URL
 });
 
 const client = new ApolloClient({
