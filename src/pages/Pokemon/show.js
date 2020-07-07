@@ -5,7 +5,6 @@ import gql from 'graphql-tag'
 
 import * as compose from 'lodash.flowright'
 import { Link } from 'react-router-dom'
-import { defaultDataIdFromObject } from 'apollo-cache-inmemory'
 
 const imgFluid = {
   maxWidth: "40%", 

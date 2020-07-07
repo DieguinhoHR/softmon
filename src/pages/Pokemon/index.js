@@ -71,7 +71,7 @@ function Pokemon(props) {
 
                     <Link to={`/pokemon/${data.pokemon.id}`}>                         
                       <a href="#" className="btn btn-primary">Visualizar</a>
-                    </Link>            
+                    </Link>  
                   </div>
                 </div>
             </div>
@@ -102,8 +102,11 @@ function Pokemon(props) {
                     </h5>
 
                     <Link to={`/pokemon/${pokemon.id}`}>                         
-                      <a href="#" className="btn btn-primary">Visualizar</a>
+                      <a href="#" className="btn btn-primary mr-1">Visualizar</a>
                     </Link>
+                    <Link to={`/pokemon/${pokemon.id}/edit`}>                         
+                      <a href="#" className="btn btn-primary">Editar</a>
+                    </Link>         
                   </div>
                 </div>
               </div>
