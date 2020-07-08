@@ -22,6 +22,10 @@ function Pokemon(props) {
     }
   }, [props]);
 
+  const handleBackPage = () => {
+    setName('')
+  }
+
   return (
     <>           
       <div className="card-body">
@@ -39,46 +43,49 @@ function Pokemon(props) {
           />         
         </div>
 
-        { name && 
         <Query
           query={GET_POKEMON}
           variables={{ name }}          
           pollInterval={1000}
         >          
-          {({ loading, error, data }) => {                     
+          {({ loading, error, data }) => {     
             if (loading) return <p>Loading...</p>;        
-            if (error) return `Error! ${error}`;
+            if (error) return '';
 
             return (
-              <div className="col-sm-12" key={data.pokemon.id}>
+              <div className="col-sm-12">
                 <div className="card">
                 <img 
-                  src={data.pokemon.image} 
+                  src={data.pokemon ? data.pokemon.image : ''} 
                   className="card-img-top rounded mx-auto d-block" 
                   style={imgFluid} 
-                  alt={data.pokemon.name}
+                  alt={data.pokemon ? data.pokemon.name : ''}
                 />
                   <div className="card-body">
                     <h5 className="card-title">
-                      <span className="badge badge-info">{data.pokemon.number} - {data.pokemon.name}</span>                   
+                      <span className="badge badge-info">
+                        {data.pokemon ? `${data.pokemon.number}-${data.pokemon.name}` : ''}
+                      </span>                   
                     </h5>
                     
-                    <h5 className="card-title">
-                      { data.pokemon.attacks.special.map((attack, index) => (  
+                    <h5 className="card-title">                      
+                      {data.pokemon && data.pokemon.attacks.special.map((attack, index) => (  
                         <span className="badge badge-danger mr-1" key={index}>{attack.name} - {attack.type}</span>
                       ))}
                     </h5>
 
-                    <Link to={`/pokemon/${data.pokemon.id}`}>                         
-                      <a href="#" className="btn btn-primary">Visualizar</a>
-                    </Link>  
+                    { !data.pokemon && 
+                      <div class="alert alert-primary" role="alert">
+                        Nenhum registro encontrado
+                      </div>
+                    }
+                    <Link to='/' className="btn btn-outline-primary btn-sm mr-1" onClick={handleBackPage}>Voltar</Link>    
                   </div>
                 </div>
             </div>
             );
           }}    
         </Query>   
-        }   
 
         <div className="row">          
           { !name && pokemons.map((pokemon, index) => (
@@ -101,12 +108,8 @@ function Pokemon(props) {
                       ))}
                     </h5>
 
-                    <Link to={`/pokemon/${pokemon.id}`}>                         
-                      <a href="#" className="btn btn-primary mr-1">Visualizar</a>
-                    </Link>
-                    <Link to={`/pokemon/${pokemon.id}/edit`}>                         
-                      <a href="#" className="btn btn-primary">Editar</a>
-                    </Link>         
+                    <Link to={`/pokemon/${pokemon.id}`} className="btn btn-outline-primary btn-sm mr-1">Visualizar</Link>
+                    <Link to={`/pokemon/${pokemon.id}/edit`} className="btn btn-outline-primary btn-sm">Editar</Link>         
                   </div>
                 </div>
               </div>

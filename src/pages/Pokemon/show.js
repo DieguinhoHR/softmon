@@ -45,10 +45,7 @@ function Pokemon(props) {
                         <span className="badge badge-danger mr-1" key={index}>{attack.name} - {attack.type}</span>
                       ))}
                     </h5>
-
-                    <Link to='/'>                         
-                      <a href="#" className="btn btn-primary">Voltar</a>
-                    </Link>            
+                    <Link to='/' className="btn btn-outline-primary btn-sm mr-1">Voltar</Link>    
                   </div>
                 </div>
             </div>

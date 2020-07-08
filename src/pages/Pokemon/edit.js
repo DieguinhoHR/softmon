@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { graphql, Query } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -18,7 +18,6 @@ function Edit(props) {
   function handleUpdate() {
     localStorage.setItem('pokemon', JSON.stringify(name));
     alert('Registro atualizado com sucesso')
-    return props.history.goBack(1)
   }
 
 
@@ -56,10 +55,8 @@ function Edit(props) {
                     </div>
 
                     <div className="col mb-2">
-                      <Link to='/'>                         
-                        <a href="#" className="btn btn-primary mr-1">Voltar</a>
-                      </Link>    
-                      <a href="#" className="btn btn-primary mr-1" onClick={handleUpdate}>Atualizar</a>
+                      <Link to='/' className="btn btn-outline-primary btn-sm mr-1">Voltar</Link>    
+                      <button className="btn btn-outline-primary btn-sm mr-1" onClick={handleUpdate}>Atualizar</button>
                     </div> 
                   </div>
                 </div>
