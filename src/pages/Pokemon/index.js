@@ -75,7 +75,7 @@ function Pokemon(props) {
                     </h5>
 
                     { !data.pokemon && 
-                      <div class="alert alert-primary" role="alert">
+                      <div className="alert alert-primary" role="alert">
                         Nenhum registro encontrado
                       </div>
                     }
